@@ -35,3 +35,29 @@ FXAssistant is built as a modular plugin with six key components:
 
 1. Clone and build with CMake or open in Projucer/Xcode.
 2. Deploy the `.component` to:
+3. Open Logic Pro or other AU-compatible DAW.
+
+---
+
+## 🧪 Development Phases
+
+See [roadmap/v1.0.md](./roadmap/v1.0.md) for module timelines.
+
+---
+
+## 💰 Pricing Tiers
+
+| Tier     | Features                                                   | Price     |
+|----------|------------------------------------------------------------|-----------|
+| Free     | 1 AI FX/month, MIDI humanizer (lite), basic UI             | $0        |
+| Creator  | Full AI mixing, session assistant                          | $15/month |
+| Studio   | Genre FX chains, session recall, team collab               | $30/month |
+| Pro      | All features + cloud sync, unlimited stems, priority AI    | $50/month |
+
+---
+
+## 🧠 Learn More
+
+- [Project Plan](./PROJECT_PLAN.md)
+- [Roadmap](./roadmap/v1.0.md)
+- Backend: `/django_backend/` (coming soon)
