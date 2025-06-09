@@ -1,0 +1,9 @@
+build/
+.vscode/
+*.jucer
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.dSYM
+*.component
