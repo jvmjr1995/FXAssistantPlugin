@@ -39,11 +39,27 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # Third-party app for API functionality
-    'rest_framework',
+    'rest_framework',       # Django REST Framework core
+    'rest_framework.authtoken',     # Enables token-based auth system
 
     # Your custom app
     'presets',
+
+    'recommendations'
 ]
+
+# REST framework config - This config tells DRF which auth systems and permissions to use globally
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',        # 👈 allows token header: Authorization: Token xyz
+        'rest_framework.authentication.SessionAuthentication',      # 👈 enables browser login at /api-auth/login/
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',       # 👈 all views require auth unless overridden
+    ]
+}
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

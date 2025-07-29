@@ -27,6 +27,8 @@ target_sources(FXAssistantPlugin
         PluginProcessor.h
         PluginEditor.cpp
         PluginEditor.h
+        CustomLookAndFeel.h
+        FXBlockComponent.h
 )
 
 target_compile_definitions(FXAssistantPlugin
@@ -42,5 +44,6 @@ target_link_libraries(FXAssistantPlugin
         juce::juce_audio_utils
         juce::juce_audio_processors
         juce::juce_gui_basics
+        juce::juce_graphics
         juce::juce_gui_extra
 )

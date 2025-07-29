@@ -16,9 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
 
 # This is the root URL configuration for the entire Django project.
 urlpatterns = [
-    path("admin/", admin.site.urls),            # Enables Django Admin panel at /admin/
-    path('api/', include('presets.urls')),      # Routes any /api/... requests to the presets app
+    path("admin/", admin.site.urls),                # Enables Django Admin panel at /admin/
+
+    # App APIs
+    path('api/', include('presets.urls')),          # Your preset storage APIs
+    path('api/', include('recommendations.urls')),  # Static or AI FX recommendations
+
+    # Auth routes
+    path('api/token-auth/', obtain_auth_token),         # 👈 POST username + password, returns token
+    path('api-auth/', include('rest_framework.urls')),  # 👈 Enables /api-auth/login/ form in browser
 ]

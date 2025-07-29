@@ -9,10 +9,10 @@
 // This is the header file that defines your audio plugin class — its structure, available functions, and basic properties.
 
 // The main audio processor class - this handles audio input/output and processing.
-class FXAssistantAudioProcessor : public juce::AudioProcessor {
+class FXAssistantPluginAudioProcessor : public juce::AudioProcessor {
 public:
-    FXAssistantAudioProcessor(); // Constructor
-    ~FXAssistantAudioProcessor() override; // Destructor
+    FXAssistantPluginAudioProcessor(); // Constructor
+    ~FXAssistantPluginAudioProcessor() override; // Destructor
 
     // Called before playback starts - used to initialize audio settings
     void prepareToPlay(double sampleRate, int samplesPerBlock) override {}
@@ -46,4 +46,18 @@ public:
     // Save and load plugin state (parameters/settings)
     void getStateInformation(juce::MemoryBlock& destData) override {}
     void setStateInformation(const void* data, int sizeInBytes) override {}
+
+    juce::AudioProcessorValueTreeState parameters;
+
+    // Attachments for sliders
+    using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+
+private:
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+
+    std::unique_ptr<SliderAttachment> reverbAttachment;
+    std::unique_ptr<SliderAttachment> compressorAttachment;
+    std::unique_ptr<SliderAttachment> eqLowAttachment;
+    std::unique_ptr<SliderAttachment> eqMidAttachment;
+    std::unique_ptr<SliderAttachment> eqHighAttachment;
 };
