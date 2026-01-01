@@ -43,4 +43,3 @@ def register_user(request):
         'message': 'User created successfully',
         'token': token.key,
     }, status=status.HTTP_201_CREATED)
-
