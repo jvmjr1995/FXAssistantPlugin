@@ -34,6 +34,17 @@ Builds/
 *.xcodeproj/xcuserdata/
 *.xcodeproj/project.xcworkspace/
 
+# JUCE Build Artifacts
+JUCE/CMakeFiles/
+JUCE/Makefile
+JUCE/cmake_install.cmake
+JUCE/modules/juce_*/
+JUCE/tools/CMakeCache.txt
+JUCE/tools/CMakeFiles/
+JUCE/tools/Makefile
+JUCE/tools/cmake_install.cmake
+JUCE/tools/modules/
+
 # IDE
 .vscode/
 .idea/
