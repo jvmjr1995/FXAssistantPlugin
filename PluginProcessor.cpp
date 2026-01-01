@@ -4,24 +4,24 @@
 // This is the implementation file — it tells the system how the functions declared above actually behave
 
 // Constructor: initializes your processor
-FXAssistantPluginAudioProcessor::FXAssistantPluginAudioProcessor()
+WorkflowAIAudioProcessor::WorkflowAIAudioProcessor()
     : AudioProcessor(BusesProperties()
         .withInput("Input", juce::AudioChannelSet::stereo(), true)    // defines one stereo input
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)), // defines one stereo output
-        parameters (*this, nullptr, juce::Identifier("FXParams"), createParameterLayout())
+        parameters (*this, nullptr, juce::Identifier("WorkflowParams"), createParameterLayout())
 {
     
 }
 
 // Destructor
-FXAssistantPluginAudioProcessor::~FXAssistantPluginAudioProcessor() {}
+WorkflowAIAudioProcessor::~WorkflowAIAudioProcessor() {}
 
 // This connects your processor to the GUI/editor window
-juce::AudioProcessorEditor* FXAssistantPluginAudioProcessor::createEditor() {
-    return new FXAssistantPluginAudioProcessorEditor(*this);
+juce::AudioProcessorEditor* WorkflowAIAudioProcessor::createEditor() {
+    return new WorkflowAIAudioProcessorEditor(*this);
 }
 
-juce::AudioProcessorValueTreeState::ParameterLayout FXAssistantPluginAudioProcessor::createParameterLayout()
+juce::AudioProcessorValueTreeState::ParameterLayout WorkflowAIAudioProcessor::createParameterLayout()
 {
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;(std::make_unique<juce::AudioParameterFloat>("reverb", "Reverb", 0.0f, 100.0f, 50.0f));
     

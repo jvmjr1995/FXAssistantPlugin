@@ -9,10 +9,10 @@
 // This is the header file that defines your audio plugin class — its structure, available functions, and basic properties.
 
 // The main audio processor class - this handles audio input/output and processing.
-class FXAssistantPluginAudioProcessor : public juce::AudioProcessor {
+class WorkflowAIAudioProcessor : public juce::AudioProcessor {
 public:
-    FXAssistantPluginAudioProcessor(); // Constructor
-    ~FXAssistantPluginAudioProcessor() override; // Destructor
+    WorkflowAIAudioProcessor(); // Constructor
+    ~WorkflowAIAudioProcessor() override; // Destructor
 
     // Called before playback starts - used to initialize audio settings
     void prepareToPlay(double sampleRate, int samplesPerBlock) override
@@ -43,7 +43,7 @@ public:
     bool hasEditor() const override { return true; } // this plugin has a GUI
 
     // Metadata about your plugin
-    const juce::String getName() const override { return "FX Assistant"; }
+    const juce::String getName() const override { return "Workflow AI"; }
 
     // MIDI and audio behavior flags
     bool acceptsMidi() const override { return false; }

@@ -16,9 +16,9 @@ juce_add_plugin(FXAssistantPlugin
     NEEDS_MIDI_OUTPUT FALSE
     EDITOR_WANTS_KEYBOARD_FOCUS FALSE
     PLUGIN_MANUFACTURER_CODE JMAU
-    PLUGIN_CODE FXAS
+    PLUGIN_CODE WFAI
     FORMATS AU AUv3 Standalone
-    PRODUCT_NAME "FXAssistant"
+    PRODUCT_NAME "WorkflowAI"
 )
 
 target_sources(FXAssistantPlugin

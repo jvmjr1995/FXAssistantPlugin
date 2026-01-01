@@ -9,19 +9,19 @@
 #include "PluginProcessor.h"        // Include the main processor class so we can reference it from the editor
 #include "CustomLookAndFeel.h"      // Custom styling and theme system
 #include "FXBlockComponent.h"       // Enhanced FX block component (what you just updated)
-#include "PremiumMetallicKnob.h"    // Premium metallic knob component (new separate file)
+//#include "PremiumMetallicKnob.h"    // Premium metallic knob component (new separate file)
 
 // Enhanced Plugin Editor with Hybrid Interface
 //  This class is your plugin's user interface (the window the user interacts with)
-class FXAssistantPluginAudioProcessorEditor : public juce::AudioProcessorEditor
+class WorkflowAIAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
     // Constructor: gets called when the editor is created
     // p: Reference to the audio processor that handles the actual audio processing
-    FXAssistantPluginAudioProcessorEditor(FXAssistantPluginAudioProcessor& p);
+    WorkflowAIAudioProcessorEditor(WorkflowAIAudioProcessor& p);
 
     // Destructor: called when the editor is closed
-    ~FXAssistantPluginAudioProcessorEditor() override;
+    ~WorkflowAIAudioProcessorEditor() override;
 
     // Draw visuals in the window
     // g: Graphics context for all drawing operations
@@ -41,7 +41,7 @@ public:
 
 private:
     // reference to your main processor (backend logic of the plugin)
-    FXAssistantPluginAudioProcessor& audioProcessor;
+    WorkflowAIAudioProcessor& audioProcessor;
 
     // Custom styling system for consistent visual theme
     CustomLookAndFeel customLookandFeel; // Our custom style class
@@ -130,5 +130,5 @@ private:
 
 
     // This macro disables copy/move constructors for safety
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FXAssistantPluginAudioProcessorEditor) // memory safety macro
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(WorkflowAIAudioProcessorEditor) // memory safety macro
 };

@@ -5,7 +5,7 @@
 // This is the code that paints the UI window and handles any visual updates.
 
 // Constructor - this is where we configure the GUI when the window is created
-FXAssistantPluginAudioProcessorEditor::FXAssistantPluginAudioProcessorEditor(FXAssistantPluginAudioProcessor& p)
+WorkflowAIAudioProcessorEditor::WorkflowAIAudioProcessorEditor(WorkflowAIAudioProcessor& p)
     : AudioProcessorEditor(&p), // Link this editor to the processor
       audioProcessor(p),              // Store the processor reference for later use
       selectedFXIndex(-1)
@@ -25,13 +25,13 @@ FXAssistantPluginAudioProcessorEditor::FXAssistantPluginAudioProcessorEditor(FXA
 }
 
 // Destructor — clean up when the plugin UI is closed
-FXAssistantPluginAudioProcessorEditor::~FXAssistantPluginAudioProcessorEditor() 
+WorkflowAIAudioProcessorEditor::~WorkflowAIAudioProcessorEditor() 
 {
     setLookAndFeel(nullptr);  // Reset look and feel when plugin closes
 }
 
 // Setup function: Initialize the top row controls (Genre and FX Type selectors)
-void FXAssistantPluginAudioProcessorEditor::setupTopRowControls()
+void WorkflowAIAudioProcessorEditor::setupTopRowControls()
 {
 
     // === GENRE SELECTOR ===
@@ -69,7 +69,7 @@ void FXAssistantPluginAudioProcessorEditor::setupTopRowControls()
 }
 
 // Setup function: Initialize the main content area (knob and FX chain)
-void FXAssistantPluginAudioProcessorEditor::setupMainContentArea()
+void WorkflowAIAudioProcessorEditor::setupMainContentArea()
 {
     // === PREMIUM METALLIC KNOB ===
     // Set up the large parameter control knob
@@ -90,7 +90,7 @@ void FXAssistantPluginAudioProcessorEditor::setupMainContentArea()
 }
 
 // Setup function: Initialize the bottom row action buttons
-void FXAssistantPluginAudioProcessorEditor::setupBottomRowButtons()
+void WorkflowAIAudioProcessorEditor::setupBottomRowButtons()
 {
     // === AI SUGGEST BUTTON ===
     // Button to trigger AI FX chain suggestions
@@ -186,7 +186,7 @@ void FXAssistantPluginAudioProcessorEditor::setupBottomRowButtons()
     //     audioProcessor.parameters, "eqHigh", eqHighSlider);
    
 // Resized function — called when the window size changes or on startup
-void FXAssistantPluginAudioProcessorEditor::resized() 
+void WorkflowAIAudioProcessorEditor::resized() 
 {
     auto bounds = getLocalBounds();
 
@@ -256,7 +256,7 @@ void FXAssistantPluginAudioProcessorEditor::resized()
 }
 
 // Paint function: Draw the clean background and layout indicators
-void FXAssistantPluginAudioProcessorEditor::paint(juce::Graphics& g)
+void WorkflowAIAudioProcessorEditor::paint(juce::Graphics& g)
 {
     // === MODERN GRADIENT BACKGROUND ===
 
@@ -433,7 +433,7 @@ void FXAssistantPluginAudioProcessorEditor::paint(juce::Graphics& g)
 }
 
 // Create FX chain from array of effect names (called from API response)
-void FXAssistantPluginAudioProcessorEditor::createFXChain(const juce::StringArray& fxNames)
+void WorkflowAIAudioProcessorEditor::createFXChain(const juce::StringArray& fxNames)
 {
     // Clear any existing FX blocks
     fxBlocks.clear();
@@ -471,7 +471,7 @@ void FXAssistantPluginAudioProcessorEditor::createFXChain(const juce::StringArra
 }
 
 // Handle FX block selection (updates knob color and states)
-void FXAssistantPluginAudioProcessorEditor::selectFXBlock(FXBlockComponent* selectedBlock)
+void WorkflowAIAudioProcessorEditor::selectFXBlock(FXBlockComponent* selectedBlock)
 {
     // Update all block states based on selection
     for(int i = 0; i < fxBlocks.size(); ++i)
@@ -498,7 +498,7 @@ void FXAssistantPluginAudioProcessorEditor::selectFXBlock(FXBlockComponent* sele
 }
 
 // Position FX blocks in organized display (right side of interface)
-void FXAssistantPluginAudioProcessorEditor::layoutFXBlocks()
+void WorkflowAIAudioProcessorEditor::layoutFXBlocks()
 {
     if (fxBlocks.isEmpty())
         return;
@@ -567,7 +567,7 @@ void FXAssistantPluginAudioProcessorEditor::layoutFXBlocks()
     //     blocksInCurrentRow++;
 }
 
-void FXAssistantPluginAudioProcessorEditor::callDjangoSuggestChainAPI()
+void WorkflowAIAudioProcessorEditor::callDjangoSuggestChainAPI()
 {
     // Get selected values
     juce::String genre = genreSelector.getText();
@@ -667,7 +667,7 @@ void FXAssistantPluginAudioProcessorEditor::callDjangoSuggestChainAPI()
     DBG("=== API CALL COMPLETE ===");
 }
 
-void FXAssistantPluginAudioProcessorEditor::showFallbackChain()
+void WorkflowAIAudioProcessorEditor::showFallbackChain()
 {
     DBG("Showing fallback FX chain");
     
@@ -691,7 +691,7 @@ void FXAssistantPluginAudioProcessorEditor::showFallbackChain()
     }
 }
 
-void FXAssistantPluginAudioProcessorEditor::saveCurrentChain()
+void WorkflowAIAudioProcessorEditor::saveCurrentChain()
 {
     DBG("Save Current Chain Clicked");
 
@@ -724,7 +724,7 @@ void FXAssistantPluginAudioProcessorEditor::saveCurrentChain()
     );
 }
 
-void FXAssistantPluginAudioProcessorEditor::openImportConvertDialog()
+void WorkflowAIAudioProcessorEditor::openImportConvertDialog()
 {
     DBG("Import/Convert button clicked");
 
@@ -743,7 +743,7 @@ void FXAssistantPluginAudioProcessorEditor::openImportConvertDialog()
     );
 }
 
-void FXAssistantPluginAudioProcessorEditor::adjustSelectedFXParameter(float value)
+void WorkflowAIAudioProcessorEditor::adjustSelectedFXParameter(float value)
 {
     (void)value;
     
@@ -789,5 +789,5 @@ void FXAssistantPluginAudioProcessorEditor::adjustSelectedFXParameter(float valu
 // This function is required by JUCE to instantiate the plugin
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new FXAssistantPluginAudioProcessor();
+    return new WorkflowAIAudioProcessor();
 }
