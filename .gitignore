@@ -61,4 +61,4 @@ JUCE/tools/modules/
 # Temporary files
 *.tmp
 *.temp
-.cache/
+.cache/JUCE/modules/
