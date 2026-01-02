@@ -62,3 +62,4 @@ JUCE/tools/modules/
 *.tmp
 *.temp
 .cache/JUCE/modules/
+compile_commands.json

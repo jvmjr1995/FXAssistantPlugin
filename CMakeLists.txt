@@ -1,15 +1,22 @@
+# Minimum version of CMake needed to build this project
 cmake_minimum_required(VERSION 3.15)
 
-project(FXAssistantPlugin VERSION 0.1.0)
+# Define the project name and version
+project(WorkflowAI VERSION 0.1.0)
 
+# Tell the compiler to use C++17 standard
 set(CMAKE_CXX_STANDARD 17)
 
-# Make JUCE available via CMake’s FetchContent or external path
-set(JUCE_DIR "/Users/jessiemartin/JUCE")  # Replace this if you relocate JUCE
-
+# Point to your JUCE installation
+set(JUCE_DIR "/Users/jessiemartin/JUCE")
 add_subdirectory(${JUCE_DIR} JUCE)
 
-juce_add_plugin(FXAssistantPlugin
+add_compile_definitions(
+    JUCE_VST3_CAN_REPLACE_VST2=0
+)
+
+# Create the plugin
+juce_add_plugin(WorkflowAI
     COMPANY_NAME "JessieMartinAudio"
     IS_SYNTH FALSE
     NEEDS_MIDI_INPUT FALSE
@@ -17,47 +24,27 @@ juce_add_plugin(FXAssistantPlugin
     EDITOR_WANTS_KEYBOARD_FOCUS FALSE
     PLUGIN_MANUFACTURER_CODE JMAU
     PLUGIN_CODE WFAI
-    FORMATS AU AUv3 Standalone
+    FORMATS AU VST3 Standalone
     PRODUCT_NAME "WorkflowAI"
+    VST3_CATEGORIES Fx
 )
 
-target_sources(FXAssistantPlugin
+# Add source files
+target_sources(WorkflowAI
     PRIVATE
         PluginProcessor.cpp
         PluginProcessor.h
         PluginEditor.cpp
         PluginEditor.h
-        CustomLookAndFeel.h
-        FXBlockComponent.h
-        PremiumMetallicKnob.h
 )
 
-target_compile_definitions(FXAssistantPlugin
+# Link JUCE modules
+target_link_libraries(WorkflowAI
     PRIVATE
-        JUCE_WEB_BROWSER=0
-        JUCE_USE_CURL=1
-        JUCE_DISPLAY_SPLASH_SCREEN=0
-)
-
-target_link_libraries(FXAssistantPlugin
-    PRIVATE
-        # Core JUCE modules
         juce::juce_core
-        juce::juce_data_structures
-        juce::juce_events
-        juce::juce_graphics
-        juce::juce_gui_basics
-        juce::juce_gui_extra
-        
-        # Audio modules
         juce::juce_audio_basics
-        juce::juce_audio_devices
-        juce::juce_audio_formats
         juce::juce_audio_processors
+        juce::juce_audio_devices
         juce::juce_audio_utils
-        
-    PUBLIC
-        juce::juce_recommended_config_flags
-        juce::juce_recommended_lto_flags
-        juce::juce_recommended_warning_flags
+        juce::juce_gui_basics
 )

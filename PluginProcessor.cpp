@@ -1,35 +1,40 @@
+// Include our header file (the interface/blueprint)
 #include "PluginProcessor.h"
+
+// Include the editor (GUI) so we can create it
 #include "PluginEditor.h"
 
-// This is the implementation file — it tells the system how the functions declared above actually behave
-
-// Constructor: initializes your processor
+// Constructor - called when Logic Pro loads the plugin
 WorkflowAIAudioProcessor::WorkflowAIAudioProcessor()
-    : AudioProcessor(BusesProperties()
-        .withInput("Input", juce::AudioChannelSet::stereo(), true)    // defines one stereo input
-        .withOutput("Output", juce::AudioChannelSet::stereo(), true)), // defines one stereo output
-        parameters (*this, nullptr, juce::Identifier("WorkflowParams"), createParameterLayout())
+    : AudioProcessor(BusesProperties()    // Call parent class constructor  
+        .withInput("Input", juce::AudioChannelSet::stereo(), true)      // Create stereo input (left + right)
+        .withOutput("Output", juce::AudioChannelSet::stereo(), true))   // Create stereo output (left + right)
 {
-    
+    // Constructor body is empty for now
+    // Later we'll add code here to initialize parameters, load settings, etc.
 }
 
-// Destructor
-WorkflowAIAudioProcessor::~WorkflowAIAudioProcessor() {}
+// Destructor - called when Logic Pro closes the plugin
+WorkflowAIAudioProcessor::~WorkflowAIAudioProcessor()
+{
+    // Empty for now - we don't have anything to clean up yet
+}
 
-// This connects your processor to the GUI/editor window
-juce::AudioProcessorEditor* WorkflowAIAudioProcessor::createEditor() {
+// Create the GUI window
+juce::AudioProcessorEditor* WorkflowAIAudioProcessor::createEditor()
+{
+    // Create a new editor object and return it
+    // The "new" keyword allocates memory for the editor
+    // "*this" passes a reference to THIS processor to the editor
+    // so the editor can access our parameters and call our methods
     return new WorkflowAIAudioProcessorEditor(*this);
 }
 
-juce::AudioProcessorValueTreeState::ParameterLayout WorkflowAIAudioProcessor::createParameterLayout()
+// This special function is required by JUCE
+// The DAW calls this to create an instance of our plugin
+// Think of it as a "factory function" that builds plugins
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;(std::make_unique<juce::AudioParameterFloat>("reverb", "Reverb", 0.0f, 100.0f, 50.0f));
-    
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("reverb", "Reverb", 0.0f, 100.0f, 50.0f));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("compressor", "Compressor", 0.0f, 10.0f, 2.0f));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("eqLow", "EQ Low", -12.0f, 12.0f, 0.0f));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("eqMid", "EQ Mid", -12.0f, 12.0f, 0.0f));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("eqHigh", "EQ High", -12.0f, 12.0f, 0.0f));
-
-    return { params.begin(), params.end() };
+    // Create and return a new instance of our processor
+    return new WorkflowAIAudioProcessor();
 }
