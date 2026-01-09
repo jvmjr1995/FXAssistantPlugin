@@ -40,6 +40,22 @@ private:    // Private members
     // This lets us access the processor's parameters and call its methods
     WorkflowAIAudioProcessor& audioProcessor;
 
+    // === NEW UI COMPONENTS ===
+
+    // The "Analyze Tracks" button that the user will click
+    juce::TextButton analyzeButton;
+
+    // A label to show the title "Analysis Results"
+    juce::Label resultsTitle;
+
+    // A text editor (multi-line text box) to display the analysis results
+    // We use TextEditor instead of Label because it can show multiple lines
+    juce::TextEditor resultsDisplay;
+
+    // === BUTTON CLICK HANDLER ===
+    // This function runs when the user clicks the "Analyze Tracks" button
+    void analyzeTracksButtonClicked();
+
     // JUCE safety macro - prevents copying this object
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(WorkflowAIAudioProcessorEditor)
 };
